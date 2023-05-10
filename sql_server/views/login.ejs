@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Login Page</h1>
+    <!-- 유저가 서버에게 데이터를 보내는 form 태그 -->
+    <!-- localhost:3000/signin 이라는 주소로 
+        post형식으로 데이터를 보내는 form 태그 생성
+        input id, pass, submit 생성 -->
+    <form action="/signin" method="post">
+        <input type="text" name="id"><br>
+        <input type="password" name="pass"><br>
+        <input type="submit" value="로그인">
+    </form>
+    <!-- 하이퍼링크 생성 -->
+    <!-- localhost:3000/signup으로 이동하는 하이퍼링크 -->
+    <a href="/signup">회원가입</a>
+</body>
+</html>

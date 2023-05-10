@@ -9,6 +9,16 @@ app.set("views", __dirname+"/views")
 // 보여주는 파일들은 ejs 엔진을 사용한다. 
 app.set("view engine", 'ejs')
 
+
+// app.use(express.json())
+// post 형태의 데이터를 받기위해서 설정
+// extended 옵션에 false : express에 있는 
+// 기본 모듈(querystring)을 사용하겠다.
+// true : qs 모듈을 사용한다.
+// (별도의 설치가 필요한 부분 - 구버전)
+app.use(express.urlencoded({extended:false}))
+
+
 // localhost:3000/ 요청이 들어왔을때 함수를 실행
 // req : request 약자
 // res : response 약자
@@ -23,7 +33,34 @@ app.get("/", function(req, res){
 app.get('/second', function(req, res){
     console.log(req['query']['id'])
     console.log(req['query']['pass'])
-    res.send('Second Page')
+    const _id = req.query.id
+    const _pass = req.query.pass
+    // id가 test이고 password가 1234인 경우 로그인 성공
+    // 아니면 로그인 실패 
+    if (_id == 'test' && _pass == 1234){
+        // 로그인 성공하였을 때
+        // res.send('로그인 성공')
+        res.render('index.ejs')
+    }else{
+        // 로그인이 실패하였을 때
+        // res.send("로그인 실패")
+        res.redirect("/")
+    }
+    // res.send('Second Page')
+})
+
+// localhost:3000/login post형식으로 만들어진 api
+app.post('/login', (req, res) =>{
+    // get으로 데이터를 보내는 형태에서 데이터가 query 에 존재
+    // post 형태는 데이터가 req.body에 존재
+    // console.log(req.body)
+    // console.log(req.body)
+    // res.send(req.body)
+
+    // 서버에서 유저에게 데이터를 보내주는 부분
+    res.render("third.ejs", {
+        'input_id' : req.body.id
+    })
 })
 
 // port 번호 지정

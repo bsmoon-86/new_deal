@@ -10,9 +10,22 @@
         <h1>main page</h1>
         <p>이 페이지는 main page 입니다.</p>
         <!-- form 태그 생성 -->
+        <!-- form 태그의 역할 : 유저가 서버에게 데이터를 보내주기 위한 태그 -->
+        <!-- action : 어느 주소로 데이터를 보낼지 지정
+            method : get / post 
+                    get : 주소에 데이터를 실어서 보내준다
+                    post : request 메시지에 body 부분에 데이터를 실어서 보내준다.
+                 -->
         <form action="/second" method="get">
             <input type="text" name = 'id'><br>
             <input type="password" name = 'pass'><br>
+            <input type="submit">
+        </form>
+
+        <!-- post 형식으로 데이터를 보내주는 form 태그 생성 -->
+        <form action="/login" method="post">
+            <input type="text" name="id"><br>
+            <input type="password" name="pass"><br>
             <input type="submit">
         </form>
     </body>
