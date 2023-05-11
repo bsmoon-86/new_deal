@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Main page</h1>
+    <p><%=name%>님 환영합니다.</p>
+    <!-- 하이퍼링크 글 쓰기 -->
+    <a href="/board">글 쓰기</a>
+    <!-- 글의 목록들을 로드 -->
+    <table border="1" style="width:500px;">
+        <tr>
+            <th style="width:20%">글 번호</th>
+            <th style="width:60%">글 제목</th>
+            <th style="width:20%">작성자</th>
+        </tr>
+        <tr>
+            <td><%=data[0]['No']%></td>
+            <td><%=data[0]['title']%></td>
+            <td><%=data[0]['writer']%></td>
+        </tr>
+    </table>
+</body>
+</html>

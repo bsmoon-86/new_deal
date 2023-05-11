@@ -6,9 +6,9 @@ const app = express()
 const mysql = require('mysql2')
 // mysql 접속 정보 지정
 const connection = mysql.createConnection({
-    host : '192.168.0.36', // 'localhost'
+    host : 'localhost', // 'localhost'
     port : 3306, 
-    user : 'new_deal',      // 'root'
+    user : 'root',      // 'root'
     password : '1234',      // mysql password
     database : 'new_deal'   
 })
@@ -89,6 +89,92 @@ app.post("/signup2", function(req, res){
     )
 
     // res.send(req.body)
+})
+
+// localhost:3000/update [get] 주소 생성
+app.get("/update", function(req, res){
+    res.render('update.ejs')
+})
+
+// localhost:3000/delete [get] 주소 생성
+app.get("/delete", function(req, res){
+    res.render('delete.ejs')
+})
+
+// localhost:3000/update2 [post] 주소 생성
+// 유저가 보내온 데이터들을 변수에 담아서 
+// console.log 출력
+// 아이디가 존재하는지 확인 ->
+// 아이디가 존재한다면 데이터를 수정 
+app.post('/update2', function(req, res){
+    const _id = req.body.id
+    const _pass = req.body.pass
+    const _name = req.body.name
+    const _phone = req.body.phone
+    console.log(_id, _pass, _name, _phone)
+    // connection -> mysql server
+    connection.query(
+        `
+            select 
+            * 
+            from
+            user_info 
+            where 
+            id = ? 
+        `, 
+        [_id], 
+        function(err, result){
+            if (err){
+                console.log('select error :', err)
+                res.send('sql Error')
+            }else{
+                // 아이디가 존재한다
+                if (result.length != 0){
+                    connection.query(
+                        `
+                        update user_info set 
+                        pass = ?, name = ?, phone = ?
+                        where id = ?
+                        `, 
+                        [_pass, _name, _phone, _id], 
+                        function(err, result){
+                            if(err){
+                                console.log('update error :', err)
+                                res.send('sql error[update]')
+                            }else{
+                                res.redirect("/")
+                            }
+                        }
+                    )
+                }
+                // 아이디가 존재하지 않는다.
+                else{
+                    res.send('아이디가 존재하지 않습니다. ')
+                }
+            }
+        }
+    )
+})
+
+
+// localhost:3000/delete2 [get] 주소 생성
+app.get("/delete2", function(req, res){
+    const _id = req.query.id
+    console.log(_id)
+    // sql 쿼리문을 이용하여 데이터를 삭제
+    connection.query(
+        `delete from user_info where id = ?`, 
+        [_id], 
+        function(err, result){
+            if(err){
+                console.log('delete error :', err)
+                res.send('sql error')
+            }else{
+                console.log(result)
+                res.redirect("/")
+            }
+        }
+    )
 })
 
 
