@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        // 매개변수, 인자
+        function view(no){
+            location.href = "/board/view?No="+no
+        }
+    </script>
 </head>
 <body>
     <h1>Main page</h1>
@@ -20,7 +26,7 @@
         </tr>
         <!-- 반복문 시작 -->
         <%for (var i = 0; i < data.length; i++) {%>
-            <tr>
+            <tr onclick="view('<%=data[i].No%>')">
                 <td><%=data[i]['No']%></td>
                 <td><%=data[i]['title']%></td>
                 <td><%=data[i]['writer']%></td>

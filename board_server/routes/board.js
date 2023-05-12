@@ -41,5 +41,28 @@ router.post('/add', function(req, res){
     )
 })
 
+// localhost:3000/board/view [get] 주소 생성
+router.get('/view', function(req, res){
+    const _no = req.query.No
+    console.log(_no)
+    connection.query(
+        `select * from board where No = ?`, 
+        [_no], 
+        function(err, result){
+            if(err){
+                console.log('/view select error :', err)
+                res.send('sql error')
+            }else{
+                console.log(result)
+                // res.send(result)
+                res.render('view_content.ejs', {
+                    'data' : result
+                })
+            }
+        }
+    )
+
+})
+
 
 module.exports = router

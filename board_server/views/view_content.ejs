@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function list(){
+            location.href='/main'
+        }
+    </script>
+</head>
+<body>
+    <h1>게시글</h1>
+    <table border=1>
+        <tr>
+            <th>제목</th>
+            <td><%=data[0]['title']%></td>
+        </tr>
+        <tr>
+            <th>작성자</th>
+            <td><%=data[0]['writer']%></td>
+        </tr>
+        <tr>
+            <th>본문</th>
+            <td><%=data[0]['content']%></td>
+        </tr>
+    </table>
+    <button onclick="list()">글 목록</button>
+</body>
+</html>
