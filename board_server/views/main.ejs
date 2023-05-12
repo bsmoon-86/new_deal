@@ -18,11 +18,15 @@
             <th style="width:60%">글 제목</th>
             <th style="width:20%">작성자</th>
         </tr>
-        <tr>
-            <td><%=data[0]['No']%></td>
-            <td><%=data[0]['title']%></td>
-            <td><%=data[0]['writer']%></td>
-        </tr>
+        <!-- 반복문 시작 -->
+        <%for (var i = 0; i < data.length; i++) {%>
+            <tr>
+                <td><%=data[i]['No']%></td>
+                <td><%=data[i]['title']%></td>
+                <td><%=data[i]['writer']%></td>
+            </tr>
+        <!-- 반복문 종료 -->
+        <%}%>
     </table>
 </body>
 </html>

@@ -76,7 +76,8 @@ app.get('/main', function(req, res){
         // mysql에 있는 board 테이블의 정보를 로드하여 
         // 유저에게 보내준다.
         connection.query(
-            `select * from board`, 
+            // 로드하는 데이터의 순서를 No 내림차순 정렬로 변경
+            `select * from board order by No DESC`, 
             function(err, result){
                 if(err){
                     console.log(err)
@@ -102,3 +103,40 @@ app.use('/board', board)
 app.listen(3000, function(){
     console.log('Server Start')
 })
+
+
+
+
+/*
+
+a = {
+    name : test, 
+    age : 20
+}
+test라는 문구를 출력하려면 -> a.name
+
+b = [1,2,3,4,5]
+
+3을 출력하려면? -> b[2]
+
+
+c = [
+    {
+        name : test, 
+        age : 20
+    }, 
+    {
+        name : test2, 
+        age : 30
+    }
+]
+c[0] -> {
+        name : test, 
+        age : 20
+    }
+
+
+test라는 문구를 출력하려면? -> c[0]['name']
+
+30이라는 문구를 출력하려면? -> c[1]['age']
+*/
