@@ -32,6 +32,12 @@ web3.eth.getAccounts(function(err, ass){
     }
 })
 
+// localhost:3000/ [get] 주소 생성
+app.get("/", function(req, res){
+    res.render('index.ejs')     
+    // views폴더 안에 있는 index.ejs 파일 유저에게 보내준다
+})
+
 app.get('/signup', function(req, res){
     res.render('signup.ejs')
 })

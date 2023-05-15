@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function signup(){
+            // 하이퍼링크를 js을 이용하여 생성
+            location.href='/signup'
+        }
+    </script>
+</head>
+<body>
+    <!-- 유저가 입력하는 공간 ->  -->
+    <form action="/login" method="post">
+        <!-- ID를 입력하는 공간 -->
+        <label>ID</label>
+        <input type="text" name="input_id"><br>
+        <!-- PASSWORD를 입력하는 공간 -->
+        <label>Password</label>
+        <input type="password" name="input_pass"><br>
+        <input type="submit" value="로그인">
+    </form>
+    <button onclick="signup()">회원가입</button>
+</body>
+</html>
