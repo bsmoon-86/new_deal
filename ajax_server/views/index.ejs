@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- header.ejs를 로드 -->
+    <%- include("header.ejs") %>
+</head>
+<body>
+    <input type="text" id = 'input_id'><br>
+    <button id="bt">ajax 통신</button>
+    <p></p>
+    <script>
+        $('#bt')
+        .click(function(){
+            // 비동기 통신을 하는 부분
+            $.ajax(
+                {
+                    url : '/ajax', 
+                    method : 'GET', 
+                    datatype : 'json',
+                    data : {
+                        _id : $('#input_id').val()
+                    }
+                }
+            )
+            // 통신이 완료되고 결과 값을 받아오는 부분
+            .done(function(result){
+                $('p').text(result)
+            })
+        })
+    </script>
+</body>
+</html>

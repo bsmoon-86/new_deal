@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+</head>
+<body>
+    <input type="text" id = 'input1'><br>
+    <input type="test" id = 'input2'>
+    <p></p>
+    <script>
+        $("#input1")        // 태그 들 중 id가 input1인 태그를 선택
+        .keyup(function(){
+            let value = $(this).val()
+            $('p').text(value)
+        })
+
+        $('#input2')
+        .keyup(function(){
+            let value1 = $('#input1').val()
+            let value2 = $(this).val()
+            let result;
+            if (value1 == value2){
+                result = 'True'
+            }else{
+                result = 'False'
+            }
+            $('p').text(result)
+        })
+    </script>
+</body>
+</html>

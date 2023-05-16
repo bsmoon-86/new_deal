@@ -119,6 +119,9 @@ app.post("/login", function(req, res){
             // req.session -> request 메시지 안에 session이라는 키 값의 value
             // value의 형태는 json
             // json 새로운 키 값 'login'에 value를 result를 대입한다.
+            // result 데이터형태 -> json 
+            // 입력받은 아이디값을 추가 key는 id value는 입력받은 아이디값
+            result.id = _id
             req.session['login'] = result
         }
         res.redirect('/')
