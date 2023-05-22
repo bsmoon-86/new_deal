@@ -91,6 +91,31 @@ app.post('/login', function(req, res){
     })
 })
 
+// 비동기 통신을 하는 주소를 생성 
+// localhost:3000/check_id
+app.get("/check_id", function(req, res){
+    // 유저가 보낸 데이터를 변수에 대입
+    const _id = req.query._id
+    console.log(_id)
+
+    smartcontract.methods
+    .view_info(_id)
+    .call()
+    .then(function(result){
+        // result의 데이터의 형태가
+        // {'0': password, '1' : name, '2' : phone}
+        // 데이터가 존재하지 않으면 
+        // {'0' : "", '1' : "", '2' : ""}
+        if (result['0']){
+            // 사용할수 없는 아이디
+            res.send(false)
+        }else{
+            // 사용할수 있는 아이디
+            res.send(true)
+        }
+    })
+})
+
 
 app.listen(3000, function(){
     console.log('Server Start')

@@ -5,19 +5,89 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .display{
+            display : none;
+        }
+    </style>
+    <%- include("header.ejs") %>
+    <script>
+        $(document).ready(function(){
+            $('#check')     //태그 중 id가 check인 태그를 선택
+            .click(function(){
+                // 태그 중 id가 post_id인 태그의 value를 불러온다
+                let input_id = $('#post_id').val()
+                /*
+                    input_id를 ajax를 이용하여 서버에 비동기 통신
+                    서버에서는 보내준 데이터를 가지고 
+                    klaytn testnet block안에 해당하는 아이디 값이 
+                    존재하는지 확인하여 리턴 값을 bool의 형태로 보내준다
+                */
+                $.get(
+                    "/check_id", 
+                    {
+                        _id : input_id
+                    }, 
+                    function(result, status){
+                        // result는 데이터의 형태 bool
+                        if (result){
+                            // ID가 사용 가능
+                            // toggleClass()함수는 해당하는 태그가 
+                            // class의 값을 가지고 있으면 삭제
+                            // 가지고 있지 않으면 추가 
+                            $('#info').toggleClass('display')
+                            $('#check').toggleClass('display')
+                            // id 입력 공간을 수정이 불가능하게 변경
+                            $('#post_id').attr('readonly', true)
+                        }else{
+                            // ID가 사용 불가능
+                            alert('해당하는 아이디가 존재합니다.')
+                        }
+                    }
+                )
+            })
+        })
+    </script>
+    <script>
+        $(document).ready(function(){
+            $('#confirm')
+            .keyup(function(){
+                // pass, confirm id를 가진 태그의 value를 변수에 대입
+                let pass = $('#pass').val()
+                let confirm = $('#confirm').val()
+
+                if(pass == confirm){
+                    // check_pass라는 id를 가진 태그에 비밀번호가 일치 메시지 보여주고
+                    // sub라는 id 값을 가진 버튼을 활성화 한다
+                    $('#check_pass').text('비밀번호 일치')
+                    $('#sub').attr('disabled', false)
+                }else{
+                    $('#check_pass').text('비밀번호 불일치')
+                    $('#sub').attr('disabled', true)
+                }
+            })
+        })
+    </script>
 </head>
 <body>
     <form action="/signup2" method="get">
         <!-- 유저의 정보를 입력하는 공간 -->
         <label>ID</label>
-        <input type="text" name="input_id"><br>
-        <label>Password</label>
-        <input type="password" name="input_pass"><br>
-        <label>Name</label>
-        <input type="text" name="input_name"><br>
-        <label>Phone</label>
-        <input type="text" name="input_phone"><br>
-        <input type="submit" value="회원가입">
+        <input type="text" name="input_id" id="post_id">
+        <span id ='check'>ID 중복체크</span>
+        <br>
+        <div id="info" class="display">
+            <label>Password</label>
+            <input type="password" name="input_pass" id="pass"><br>
+            <label>Confirm Password</label>
+            <input type="password" id="confirm">
+            <span id="check_pass"></span><br>
+            <label>Name</label>
+            <input type="text" name="input_name"><br>
+            <label>Phone</label>
+            <input type="text" name="input_phone"><br>
+            <input type="submit" id="sub" value="회원가입", disabled="disabled">
+        </div>
     </form>
 </body>
 </html>
