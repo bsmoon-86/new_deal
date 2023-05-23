@@ -58,6 +58,35 @@ async function trans_from_token(_address, _amount){
     kip7.setWallet(keyringContainer)  
 
     // 토큰 발행자의 지갑 주소
-    
+    const owner = keyring.address
+    console.log(owner)
+
+    // 유저의 지갑 주소를 container 추가
+    const keyring2 = keyringContainer.keyring.createFromPrivateKey('0x1b02d2bb3012f7218e90d336a935bd919d0741a5814252d51cf5c337984f2192')
+    keyringContainer.add(keyring2)
+
+    // approve(권한을 받을 주소, 토큰의 양, from)
+    await kip7.approve(owner, _amount, {from : keyring2.address})
+
+    const receipt = await kip7.transferFrom(
+        _address, 
+        owner, 
+        _amount, 
+        {from : owner})
+
+    console.log(receipt)
+
+    // 이 함수는 에러가 발생
+    // 에러의 원인은 오너가 오너의 지갑이 아닌 
+    // 다른 사람의 지갑의 토큰을 이동하려하기 때문
+    // 이 함수를 에러가 발생하지 않게 실행을 시키려면
+    // 유저가 토큰에 대한 권한을 오너에게 지정
+    // 권한을 지정하는 함수는 approve()
+    // approve()  
+    //      자기 자신의 지갑에서 일정 토큰의 양을 다른 사람이 
+    //      이동 시킬 수 있도록 허가하는 함수
+    // transferFrom()함수를 실행하기 위해서는 
+    // approve() 함수를 이용하여 권한을 지정하고 사용
 
 }
+trans_from_token('0xd52863320168D36402EFb31b36515D723656258D', 1000)
