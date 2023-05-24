@@ -63,6 +63,18 @@ app.post('/trans_token2', async function(req, res){
 
 })
 
+app.post("/trans_token3", async function(req, res){
+    // 유저가 보낸 데이터를 변수에 대입
+    const _token = req.body._token
+    const _private = req.body._private
+    const _amount = Number(req.body._amount)
+    console.log(_token, _private, _amount)
+
+    await token.trans_from_token(_token, _private, _amount)
+
+    res.redirect("/")
+})
+
 
 // 토큰의 양을 확인 화면 api
 app.get('/token_balance', function(req, res){
