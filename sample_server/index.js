@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:false}))
 require('dotenv').config()
 
 // mysql 설정
-const mysql = reuqire('mysql2')
+const mysql = require('mysql2')
 const connection = mysql.createConnection({
     host : process.env.host, 
     port: process.env.port, 
@@ -108,6 +108,11 @@ app.get("/main", function(req, res){
         res.redirect('/')
     }
 })
+
+const survey = require("./routes/survey")()
+app.use('/survey', survey)
+
+
 
 
 

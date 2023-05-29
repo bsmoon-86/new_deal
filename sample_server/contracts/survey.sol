@@ -64,7 +64,8 @@ contract survey{
 
         // 배열의 정보를 리턴하는 함수
         function get_survey(
-            uint _index) public view returns (
+            uint _index) 
+            public view returns (
                 string memory, 
                 string memory, 
                 uint8, 

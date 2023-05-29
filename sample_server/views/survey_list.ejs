@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- data라는 이름으로 설문 내역 데이터가 같이 오는 경우
+    data = [
+            {0 : moon, 
+            1: male, 
+            2: 30, 
+            3: 아메리카노},
+            {0 : XXXXX, 
+            1: XXXXXX, 
+            2: XXXXXX, 
+            3: XXXXX},
+            {0 : XXXXX, 
+            1: XXXXXX, 
+            2: XXXXXX, 
+            3: XXXXX},
+    ]
+    -->
+
+    <h1>설문조사 내역</h1>
+    <!-- 설문 내역들을 하나씩 보여준다. -->
+    <!--  data에서 moon이라는 단어를 출력하려면?
+         data[0] -> {0 : moon, 
+            1: male, 
+            2: 30, 
+            3: 아메리카노}
+        data[0][0] -> moon -->
+    <!-- 리스트 형태로 설문 내역 표시 -->
+    <ol>
+        <!-- <percent  percent> 코드 안에는 js 코드를 인식한다 -->
+        <% for (var i =0; i < data.length; i++) {%>
+        <li>
+            <ul>
+                <li><%=data[i][0]%></li>
+                <li><%=data[i][1]%></li>
+                <li><%=data[i][2]%></li>
+                <li><%=data[i][3]%></li>
+            </ul>
+        </li>
+        <% } %>
+    </ol>
+</body>
+</html>

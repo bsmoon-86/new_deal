@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>설문지</h1>
+    <!-- 테이블의 형태를 구성 -->
+    <!-- tr 태그는 행을 추가하는 태그 -->
+    <!-- th, td 태그는 열을 추가하는 태그
+    th : 열을 추가하고 안에 텍스트를 굵은 글씨와 중앙정렬
+    td : 열을 추가하고 안에 텍스트를 일반 글씨와 좌측정렬 -->
+    <form action="/survey/submit" method="get">
+        <!-- 유저의 정보를 입력 -->
+        <table border="1">
+            <tr>
+                <th>질문</th>
+                <th>답변</th>
+            </tr>
+            <tr>
+                <td>당신의 성별을 선택하시오</td>
+                <td>
+                    <!-- 라디오 버튼은 해당하는 항목의 값을 하나만 선택할 수 있는 버튼
+                    name의 값을 같게 만들어줘야 선택이 하나만 된다. 
+                    radio 버튼이 선택이 되었을때 데이터를 보내주려면 value라는 값을 지정-->
+                    <input type='radio' name='gender' value="male">남자<br>
+                    <input type='radio' name='gender' value="female">여자
+                </td>
+            </tr>
+            <tr>
+                <td>당신의 연령대를 선택하시오</td>
+                <td>
+                    <input type="radio" name="age" value="10">10대<br>
+                    <input type="radio" name="age" value="20">20대<br>
+                    <input type="radio" name="age" value="30">30대<br>
+                    <input type="radio" name="age" value="40">40대<br>
+                    <input type="radio" name="age" value="50">50대
+                </td>
+            </tr>
+            <tr>
+                <td>당신이 좋아하는 커피의 종류를 선택하시오</td>
+                <td>
+                    <input type="radio" name="coffee" value="아메리카노">아메리카노<br>
+                    <input type="radio" name="coffee" value="카페라떼">카페라떼<br>
+                    <input type="radio" name="coffee" value="카푸치노">카푸치노<br>
+                    <input type="radio" name="coffee" value="마끼아또">마끼아또<br>
+                </td>
+            </tr>
+        </table>
+        <input type="submit" value="설문 제출">
+    </form>
+    
+</body>
+</html>
