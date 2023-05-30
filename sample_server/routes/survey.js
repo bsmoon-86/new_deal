@@ -76,6 +76,7 @@ module.exports = function(){
             .then(async function(receipt){
                 console.log(receipt)
                 // 설문이 완료되면 토큰을 보상한다. 
+                // 토큰의 주소를 .env에 작성한 주소를 사용한다. 
                 const token_address = process.env.token_address
                 // 토큰을 보상해주는 지갑의 주소 값을 넣어준다.
                 const address = '0x6A12A3909D0737d7e4CDeDB3Cde300406700d672'
