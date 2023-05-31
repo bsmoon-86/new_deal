@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Document</title>    
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 </head>
 <body>
     <h1>웹소켓 테스트</h1>
 
     <!-- 버튼 2개 생성 -->
+    <input type="text" id="solution"><br>
     <button id="btn_send">메시지 전송</button>
     <button id="btn_close">연결 끊기</button>
 
@@ -44,19 +46,20 @@
         // 3. 버튼 클릭 이벤트 처리
         // 3-1) 웹소켓 서버에게 메세지 보내기
         let count = 1;
-        document.getElementById("btn_send").onclick = function(){
+        $("#btn_send").click(function(){
+            let msg = $('#solution').val()
     
             if(webSocket.readyState === webSocket.OPEN){ // 연결 상태 확인
-                webSocket.send(`증가하는 숫자를 보냅니다 => ${count}`); // 웹소켓 서버에게 메시지 전송
-                count++; // 보낼때마다 숫자를 1씩 증가
+                webSocket.send(`증가하는 숫자를 보냅니다 => ${msg}`); // 웹소켓 서버에게 메시지 전송
+                $('#solution').val('')
     
             }else{
                 alert("연결된 웹소켓 서버가 없습니다.");
             }
-        }
+        })
     
         // 3-2) 웹소켓 서버와 연결 끊기
-        document.getElementById("btn_close").onclick = function(){
+        $("#btn_close").click(function(){
     
             if(webSocket.readyState === webSocket.OPEN){ // 연결 상태 확인
                 webSocket.close(); // 연결 종료
@@ -64,7 +67,7 @@
             }else{
                 alert("연결된 웹소켓 서버가 없습니다.");
             }
-        }
+        })
     
     
     </script>
