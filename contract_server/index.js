@@ -4,7 +4,7 @@ const app = express()
 
 // web3 로드
 // web3 라이브러리 이더리움 네트워크에서 contract 호출하기위한 라이브러리
-const Web3 = require('web3')
+const {Web3} = require('web3')
 // 컨트렉트의 정보를 로드 
 const contract_info = require('./build/contracts/user_info.json')
 

@@ -18,7 +18,7 @@
 
     <script>
         // 1. 웹소켓 클라이언트 객체 생성
-        const webSocket = new WebSocket("ws://localhost:3000");
+        const webSocket = new WebSocket("ws://darkpreist.iptime.org:8080");
     
     
         // 2. 웹소켓 이벤트 처리
@@ -50,7 +50,7 @@
             let msg = $('#solution').val()
     
             if(webSocket.readyState === webSocket.OPEN){ // 연결 상태 확인
-                webSocket.send(`증가하는 숫자를 보냅니다 => ${msg}`); // 웹소켓 서버에게 메시지 전송
+                webSocket.send(msg); // 웹소켓 서버에게 메시지 전송
                 $('#solution').val('')
     
             }else{
